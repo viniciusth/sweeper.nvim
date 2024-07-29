@@ -1,1 +1,1 @@
-# vim-sweeper
+# sweeper.nvim
