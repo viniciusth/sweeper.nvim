@@ -1,18 +1,16 @@
-
+---@diagnostic disable: undefined-field
 
 local function get_keymaps()
-    local modes = {'n', 'v'}
+    local modes = {'n', 'v', 'x', 'c', 'i'}
     local keymaps = {}
     for _, mode in ipairs(modes) do
         local kms = vim.api.nvim_get_keymap(mode)
         for _, km in ipairs(kms) do
-            ---@diagnostic disable-next-line: undefined-field
+            local key = mode .. '--//--' .. km.lhsraw
             if km.rhs ~= '' and km.rhs ~= nil then
-                ---@diagnostic disable-next-line: undefined-field
-                keymaps[km.lhsraw] = km.rhs
+                keymaps[key] = km.rhs
             elseif km.callback ~= nil then
-                ---@diagnostic disable-next-line: undefined-field
-                keymaps[km.lhsraw] = '<anonymous>'
+                keymaps[key] = '<anonymous>'
             end
         end
     end
@@ -23,12 +21,12 @@ end
 local function setup_data_keymaps()
     local sweeper_data = vim.g.sweeper_data
     sweeper_data.keymaps = get_keymaps()
-    for km, km_name in pairs(sweeper_data.keymaps) do
+    for km, cmd in pairs(sweeper_data.keymaps) do
         if sweeper_data.keymap_data[km] == nil then
             sweeper_data.keymap_data[km] = {
                 count = 0,
                 last_used = os.time(),
-                cmd = km_name,
+                cmd = cmd,
                 metadata = {}
             }
         end

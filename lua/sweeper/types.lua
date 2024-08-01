@@ -12,10 +12,12 @@ local Data = {}
 ---@field last_used number
 ---@field cmd string
 ---@field formatted_km string
+---@field mode string
 local KeymapData = {}
 
 ---@class KeymapHistorical
 ---@field formatted_km string
+---@field mode string
 ---@field used_at number
 ---@field metadata table
 local KeymapHistorical = {}

@@ -18,6 +18,7 @@ vim.api.nvim_create_user_command('Sweeper', 'lua require("sweeper").sweep()', { 
 
 vim.api.nvim_create_autocmd('VimLeavePre', {
     callback = function()
+        require('sweeper.db').update()
     end
 })
 
@@ -29,6 +30,7 @@ end)
 local timer = vim.uv.new_timer()
 
 timer:start(0, 5000, vim.schedule_wrap(function()
+    require('sweeper.db').update()
 end))
 
 vim.defer_fn(function()
