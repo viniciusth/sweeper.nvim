@@ -11,7 +11,6 @@ vim.g.sweeper_data = {
     keymap_data = {},
     keymap_historical = {},
     keymaps = {},
-    needs_write = false,
 }
 
 vim.api.nvim_create_user_command('Sweeper', 'lua require("sweeper").sweep()', { nargs = 0 })

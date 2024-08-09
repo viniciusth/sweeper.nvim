@@ -4,7 +4,6 @@
 ---@field keymap_data table<string, KeymapData>
 ---@field keymap_historical table<string, KeymapHistorical[]>
 ---@field keymaps table<string, string>
----@field needs_write boolean
 local Data = {}
 
 ---@class KeymapData

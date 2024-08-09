@@ -1,7 +1,6 @@
 local function default_keymap_data()
     return {
         count = 0,
-        last_used = os.time(),
     }
 end
 
@@ -14,8 +13,6 @@ local function handle_keymap(km)
     if cmd == nil then
         return
     end
-
-    km = vim.api.nvim_replace_termcodes(km, true, false, true)
 
     if sweeper_data.keymap_data[km_key] == nil then
         sweeper_data.keymap_data[km_key] = default_keymap_data()

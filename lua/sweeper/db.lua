@@ -55,14 +55,13 @@ local function create_values()
     local historical_values = {}
     for k, v in pairs(d.keymap_data) do
         if v.count > 0 then
-            local mode = k:sub(1, 1)
-            values = values .. string.format("('%s', '%s', %d, %d),", v.formatted_km, mode, v.count, v.last_used)
+            values = values .. string.format("('%s', '%s', %d, %d),", v.formatted_km, v.mode, v.count, v.last_used)
             d.keymap_data[k].count = 0
             local hist = d.keymap_historical[k]
             for _, h in ipairs(hist) do
                 historical_values[#historical_values + 1] = {
                     keymap = h.formatted_km,
-                    mode = mode,
+                    mode = v.mode,
                     used_at = h.used_at,
                     metadata = h.metadata,
                 }

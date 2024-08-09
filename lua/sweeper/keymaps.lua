@@ -21,16 +21,6 @@ end
 local function setup_data_keymaps()
     local sweeper_data = vim.g.sweeper_data
     sweeper_data.keymaps = get_keymaps()
-    for km, cmd in pairs(sweeper_data.keymaps) do
-        if sweeper_data.keymap_data[km] == nil then
-            sweeper_data.keymap_data[km] = {
-                count = 0,
-                last_used = os.time(),
-                cmd = cmd,
-                metadata = {}
-            }
-        end
-    end
     vim.g.sweeper_data = sweeper_data
 end
 
